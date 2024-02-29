@@ -33,7 +33,10 @@ public class SecurityConfig {
         return httpSecurity
                 .formLogin(Customizer.withDefaults())
                 .oauth2Login(oc->oc.userInfoEndpoint(ui->ui.userService(appUserService.oauth2LoginHandler()).oidcUserService(appUserService.oidcLoginHandler())))
-                .authorizeHttpRequests(c->c.anyRequest().authenticated())
+                .authorizeHttpRequests(c->c
+                       // .anyRequest().authenticated())-> we use anyRequest for all requests
+                        .requestMatchers("/images/**","/**.css","/**.js").permitAll()
+                        .requestMatchers("/").permitAll())
                 .build();
     }
 

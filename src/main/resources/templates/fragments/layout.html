@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-th-fragment="layout(activeMenu,content)">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>layout</title>
+    <!-- You MUST include jQuery 3.4+ before Fomantic -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
+    <link rel="stylesheet" data-th-href="@{../static/images/app.css}">
 </head>
 <body>
-$END$
+    <div class="ui container">
+        <!-- TOP MENU -->
+        <div data-th-replace="~{fragments/menu::top_menu}"></div>
+        <!-- CONTENT -->
+        <div data-th-insert="${content}">
+
+        </div>
+    </div>
+
 </body>
 </html>
